@@ -3,6 +3,7 @@ require File.join(File.dirname(__FILE__), 'routes/inactive_release_one_constrain
 
 Rails.application.routes.draw do
   root 'home#index'
+  get '/intake', to: 'home#index'
   resources :style_guide,
     only: [:index, :show],
     constraints: Routes::InactiveReleaseOneConstraint

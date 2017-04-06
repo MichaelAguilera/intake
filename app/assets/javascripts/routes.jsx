@@ -9,7 +9,7 @@ import ScreeningEditPage from 'components/screenings/ScreeningEditPage'
 import ScreeningShowPage from 'components/screenings/ScreeningShowPage'
 
 export default (
-  <Route path='/' component={App}>
+  <Route path='/intake' component={App}>
     <IndexRoute component={HomePage} />
     <Route path='/people/new' component={PersonNewPage} />
     <Route path='/people/:id' component={PersonShowPage} />
