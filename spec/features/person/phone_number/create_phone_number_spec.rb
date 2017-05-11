@@ -10,13 +10,13 @@ feature 'Create Phone Number' do
         {
           id: nil,
           number: '917-578-2010',
-          type: 'Work'
+          type: 'Work',
         },
         {
           id: nil,
           number: '568-387-8844',
-          type: nil
-        }
+          type: nil,
+        },
       ]
     )
     visit new_person_path

@@ -43,27 +43,27 @@ module Api
           :gender,
           :date_of_birth,
           :ssn,
-          addresses: %i[
-            id
-            street_address
-            city
-            state
-            zip
-            type
+          addresses: [
+            :id,
+            :street_address,
+            :city,
+            :state,
+            :zip,
+            :type,
           ],
-          phone_numbers: %i[
-            id
-            number
-            type
+          phone_numbers: [
+            :id,
+            :number,
+            :type,
           ],
           languages: [],
-          races: %i[
-            race
-            race_detail
+          races: [
+            :race,
+            :race_detail,
           ],
-          ethnicity: %i[
-            hispanic_latino_origin
-            ethnicity_detail
+          ethnicity: [
+            :hispanic_latino_origin,
+            :ethnicity_detail,
           ]
         )
       end

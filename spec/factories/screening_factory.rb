@@ -17,7 +17,7 @@ FactoryGirl.define do
         'Remote or Isolated Location',
         'Severe Mental Health Status',
         'Threat or Assault on Staff Member',
-        'Other'
+        'Other',
       ].sample
     end
     safety_information { ['Scary and dangerous', 'Fear of gangs', 'Feeling tense'].sample }

@@ -1,15 +1,14 @@
 # frozen_string_literal: true
-
 require 'rails_helper'
 require 'spec_helper'
 
 def filtered_participant_attributes
-  %i[
-    date_of_birth
-    first_name
-    gender
-    last_name
-    ssn
+  [
+    :date_of_birth,
+    :first_name,
+    :gender,
+    :last_name,
+    :ssn,
   ]
 end
 
@@ -53,12 +52,12 @@ feature 'Edit Screening' do
       gender: 'female',
       last_name: 'Simpson',
       ssn: '123-23-1234',
-      languages: %w[French Italian],
+      languages: %w(French Italian),
       addresses: [marge_address],
       phone_numbers: [marge_phone_number],
       races: [
         { race: 'White', race_detail: 'European' },
-        { race: 'American Indian or Alaska Native' }
+        { race: 'American Indian or Alaska Native' },
       ],
       ethnicity: { hispanic_latino_origin: 'Yes', ethnicity_detail: 'Central American' }
     )
@@ -70,7 +69,7 @@ feature 'Edit Screening' do
       .and_return(body: existing_screening.to_json,
                   status: 200,
                   headers: { 'Content-Type' => 'application/json' })
-    %w[Ma Mar Marg Marge].each do |search_text|
+    %w(Ma Mar Marg Marge).each do |search_text|
       stub_request(:get, intake_api_people_search_url(search_term: search_text))
         .and_return(body: [marge].to_json,
                     status: 200,

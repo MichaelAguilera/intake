@@ -21,26 +21,26 @@ module Api
         :screening_decision,
         :screening_decision_detail,
         :started_at,
-        cross_reports: %i[
-          id
-          agency_type
-          agency_name
+        cross_reports: [
+          :id,
+          :agency_type,
+          :agency_name,
         ],
-        address: %i[
-          id
-          city
-          state
-          street_address
-          zip
+        address: [
+          :id,
+          :city,
+          :state,
+          :street_address,
+          :zip,
         ],
         allegations: [
           :id,
           :screening_id,
           :perpetrator_id,
           :victim_id,
-          allegation_types: []
+          allegation_types: [],
         ],
-        safety_alerts: []
+        safety_alerts: [],
       ].freeze
 
       def create

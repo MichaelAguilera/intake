@@ -6,7 +6,7 @@ Feature.with(:centralized_sessions) do
     host: ENV.fetch('REDIS_HOST'),
     port: ENV.fetch('REDIS_PORT'),
     db: 0,
-    namespace: 'session'
+    namespace: 'session',
   }, expires_in: 4.hours
 end
 

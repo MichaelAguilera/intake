@@ -16,11 +16,11 @@ feature 'Edit Person' do
       languages: ['Armenian'],
       races: [
         { race: 'Asian', race_detail: 'Chinese' },
-        { race: 'Black or African American' }
+        { race: 'Black or African American' },
       ],
       ethnicity: {
         hispanic_latino_origin: 'Yes',
-        ethnicity_detail: 'Mexican'
+        ethnicity_detail: 'Mexican',
       }
     )
   end
@@ -143,7 +143,7 @@ feature 'Edit Person' do
     person.races = [
       { race: 'Asian', race_detail: 'Japanese' },
       { race: 'Black or African American' },
-      { race: 'White', race_detail: 'Romanian' }
+      { race: 'White', race_detail: 'Romanian' },
     ]
 
     stub_request(:put, intake_api_person_url(person.id))

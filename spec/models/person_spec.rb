@@ -21,7 +21,7 @@ describe Person do
             city: 'Springfield',
             state: 'NY',
             zip: '12345',
-            type: 'Placement'
+            type: 'Placement',
           },
           {
             id: '3',
@@ -29,19 +29,19 @@ describe Person do
             city: 'Sacramento',
             state: 'CA',
             zip: '95822',
-            type: 'Home'
-          }
+            type: 'Home',
+          },
         ],
         phone_numbers: [
           { id: '1', number: '111-111-1111', type: 'Cell' },
-          { id: '2', number: '222-222-2222', type: 'Home' }
+          { id: '2', number: '222-222-2222', type: 'Home' },
         ],
         languages: %w[English Farsi],
         races: %w[White Asian],
         ethnicity: {
           hispanic_latino_origin: 'Yes',
-          ethnicity_detail: 'Mexican'
-        }
+          ethnicity_detail: 'Mexican',
+        },
       }.with_indifferent_access
       expect(described_class.new(attributes).as_json).to eq({
         id: '1',
@@ -58,30 +58,30 @@ describe Person do
           city: 'Springfield',
           state: 'NY',
           zip: '12345',
-          type: 'Placement'
+          type: 'Placement',
         }, {
           id: '3',
           street_address: '711 capital mall',
           city: 'Sacramento',
           state: 'CA',
           zip: '95822',
-          type: 'Home'
+          type: 'Home',
         }],
         phone_numbers: [{
           id: '1',
           number: '111-111-1111',
-          type: 'Cell'
+          type: 'Cell',
         }, {
           id: '2',
           number: '222-222-2222',
-          type: 'Home'
+          type: 'Home',
         }],
         languages: %w[English Farsi],
         races: %w[White Asian],
         ethnicity: {
           hispanic_latino_origin: 'Yes',
-          ethnicity_detail: 'Mexican'
-        }
+          ethnicity_detail: 'Mexican',
+        },
       }.with_indifferent_access)
     end
   end

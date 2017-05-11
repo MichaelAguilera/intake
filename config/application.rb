@@ -30,7 +30,7 @@ module CaIntake # :nodoc:
     config.intake = {
       'base_path': ENV.fetch('BASE_PATH', '/'),
       'authentication_base_url': ENV.fetch('AUTHENTICATION_URL', ''),
-      'authentication_login_url': authentication_login_url
+      'authentication_login_url': authentication_login_url,
     }
   end
 end

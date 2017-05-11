@@ -9,7 +9,7 @@ feature 'Edit Phone Number' do
       phone_numbers: [{
         id: '1',
         number: '917-578-2010',
-        type: 'Work'
+        type: 'Work',
       }],
       addresses: []
     )
@@ -76,7 +76,7 @@ feature 'Edit Phone Number' do
       phone_numbers: [{
         id: '1',
         number: '917-578-2010',
-        type: 'Work'
+        type: 'Work',
       }],
       addresses: []
     )

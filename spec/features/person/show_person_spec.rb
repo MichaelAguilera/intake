@@ -17,11 +17,11 @@ feature 'Show Person' do
       races: [
         { race: 'White', race_detail: 'Romanian' },
         { race: 'Asian', race_detail: 'Chinese' },
-        { race: 'Black or African American' }
+        { race: 'Black or African American' },
       ],
       ethnicity: {
         hispanic_latino_origin: 'Yes',
-        ethnicity_detail: 'Mexican'
+        ethnicity_detail: 'Mexican',
       }
     )
     stub_request(:get, intake_api_person_url(person.id))

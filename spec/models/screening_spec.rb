@@ -33,25 +33,25 @@ describe Screening do
           street_address: '123 Fake St',
           city: 'NY',
           state: 'NY',
-          zip: '11222'
+          zip: '11222',
         },
         cross_reports: [
           {
             agency_type: 'District attorney',
-            agency_name: 'SCDA Office'
+            agency_name: 'SCDA Office',
           },
           {
             agency_type: 'Law enforcement',
-            agency_name: nil
-          }
+            agency_name: nil,
+          },
         ],
         allegations: [
           {
             id: '1',
             screening_id: '2',
             victim_id: '1',
-            perpetrator_id: '4'
-          }
+            perpetrator_id: '4',
+          },
         ],
         participants: [
           {
@@ -68,11 +68,11 @@ describe Screening do
                 city: 'NY',
                 state: 'NY',
                 zip: '11222',
-                type: 'Work'
-              }
-            ]
-          }
-        ]
+                type: 'Work',
+              },
+            ],
+          },
+        ],
       }.with_indifferent_access
       expect(
         described_class.new(attributes).as_json.with_indifferent_access

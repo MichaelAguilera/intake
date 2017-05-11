@@ -31,7 +31,7 @@ feature 'Show Screening' do
       started_at: '2016-08-13T10:00:00.000Z',
       cross_reports: [
         { agency_type: 'District attorney', agency_name: 'SCDA' },
-        { agency_type: 'Licensing' }
+        { agency_type: 'Licensing' },
       ]
     )
 

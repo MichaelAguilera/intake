@@ -30,7 +30,7 @@ feature 'decision card' do
                                     'Differential response',
                                     'Information to child welfare services',
                                     'Promote to referral',
-                                    'Screen out'
+                                    'Screen out',
                                   ])
       select 'Information to child welfare services', from: 'Screening Decision'
       expect(page).to have_field('Staff name', with: '')
@@ -40,7 +40,7 @@ feature 'decision card' do
                                     'Immediate',
                                     '3 days',
                                     '5 days',
-                                    '10 days'
+                                    '10 days',
                                   ])
       select 'Screen out', from: 'Screening Decision'
       expect(page).to have_select('Category', options: [
@@ -49,7 +49,7 @@ feature 'decision card' do
                                     'Information request',
                                     'Consultation',
                                     'Abandoned call',
-                                    'Other'
+                                    'Other',
                                   ])
       select 'Differential response', from: 'Screening Decision'
       expect(page).to have_field('Service name', with: '')

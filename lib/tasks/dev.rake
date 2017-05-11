@@ -41,7 +41,7 @@ namespace :docker do
       'docker-compose up -d',
       'docker-compose exec api bundle exec rake db:migrate',
       'docker-compose exec api bundle exec rake db:test:prepare',
-      'docker-compose exec api bundle exec rake search:migrate'
+      'docker-compose exec api bundle exec rake search:migrate',
     ]
     steps.each { |step| system(step) }
   end
@@ -50,7 +50,7 @@ namespace :docker do
     steps = [
       'docker rm $(docker ps -q -f status=exited)',
       'docker rmi $(docker images -q -f dangling=true)',
-      'docker volume rm $(docker volume ls -qf dangling=true)'
+      'docker volume rm $(docker volume ls -qf dangling=true)',
     ]
     steps.each { |step| system(step) }
   end

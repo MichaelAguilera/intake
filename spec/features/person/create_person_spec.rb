@@ -16,11 +16,11 @@ feature 'Create Person' do
       languages: %w[English Farsi],
       races: [
         { race: 'Asian', race_detail: 'Chinese' },
-        { race: 'Black or African American' }
+        { race: 'Black or African American' },
       ],
       ethnicity: {
         hispanic_latino_origin: 'Yes',
-        ethnicity_detail: 'Mexican'
+        ethnicity_detail: 'Mexican',
       },
       phone_numbers: []
     )

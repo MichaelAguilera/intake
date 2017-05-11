@@ -25,7 +25,7 @@ describe ErrorHandler do
       standard_error_response = {
         'error': 'standard_error',
         'status': 500,
-        'message': 'StandardError'
+        'message': 'StandardError',
       }.as_json
 
       expect(resp).to eq standard_error_response

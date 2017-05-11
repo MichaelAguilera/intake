@@ -10,13 +10,13 @@ feature 'Show Person' do
         {
           id: '1',
           number: '917-578-2010',
-          type: 'Work'
+          type: 'Work',
         },
         {
           id: '2',
           number: '456-789-4566',
-          type: nil
-        }
+          type: nil,
+        },
       ],
       addresses: FactoryGirl.create(:address, id: nil)
     )

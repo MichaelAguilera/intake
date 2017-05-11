@@ -20,11 +20,11 @@ describe PersonSearch do
         races: [],
         ethnicity: {
           hispanic_latino_origin: 'Yes',
-          ethnicity_detail: 'Mexican'
+          ethnicity_detail: 'Mexican',
         },
         highlight: {
-          first_name: '<em>Hom</em>er'
-        }
+          first_name: '<em>Hom</em>er',
+        },
       }.with_indifferent_access
       expect(described_class.new(attributes).as_json).to eq({
         id: '1',
@@ -41,11 +41,11 @@ describe PersonSearch do
         races: [],
         ethnicity: {
           hispanic_latino_origin: 'Yes',
-          ethnicity_detail: 'Mexican'
+          ethnicity_detail: 'Mexican',
         },
         highlight: {
-          first_name: '<em>Hom</em>er'
-        }
+          first_name: '<em>Hom</em>er',
+        },
       }.with_indifferent_access)
     end
   end

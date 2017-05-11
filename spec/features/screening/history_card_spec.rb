@@ -45,9 +45,9 @@ feature 'History card' do
             { first_name: 'Alex', last_name: 'Hanson', roles: ['Reporter'] },
             { first_name: 'Sally', last_name: 'Johnson', roles: ['Victim'] },
             { first_name: 'Sam', last_name: 'Anderson', roles: ['Perpetrator'] },
-            { first_name: 'James', last_name: 'Robinson', roles: [] }
-          ]
-        }
+            { first_name: 'James', last_name: 'Robinson', roles: [] },
+          ],
+        },
       ]
     end
 

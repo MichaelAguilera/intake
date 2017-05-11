@@ -21,18 +21,18 @@ describe Api::V1::ParticipantsController do
           city: 'Springfield',
           state: 'NY',
           zip: '12345',
-          type: 'placement'
+          type: 'placement',
         }],
         phone_numbers: [
           {
             id: '',
             number: '123-456-7899',
-            type: 'Work'
-          }
+            type: 'Work',
+          },
         ],
         person_id: '2',
         screening_id: '1',
-        ssn: '123-23-1234'
+        ssn: '123-23-1234',
       }.with_indifferent_access
     end
     let(:created_participant) do
@@ -63,13 +63,13 @@ describe Api::V1::ParticipantsController do
         id: '1',
         first_name: 'Marge',
         last_name: 'Simpson',
-        roles: ['Victim']
+        roles: ['Victim'],
       }
     end
     let(:params) do
       {
         id: participant_params[:id],
-        participant: participant_params
+        participant: participant_params,
       }
     end
     let(:participant) { double(:participant) }

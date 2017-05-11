@@ -278,7 +278,7 @@ feature 'edit allegations' do
       victim_id: lisa.id,
       perpetrator_id: marge.id,
       screening_id: screening.id,
-      allegation_types: ['General neglect']
+      allegation_types: ['General neglect'],
     }
 
     screening_with_new_allegation = screening.dup.tap do |obj|
@@ -477,7 +477,7 @@ feature 'edit allegations' do
       victim_id: lisa.id,
       perpetrator_id: marge.id,
       screening_id: screening.id,
-      allegation_types: ['General neglect']
+      allegation_types: ['General neglect'],
     }
 
     screening_with_new_allegation = screening.dup.tap do |obj|
@@ -579,7 +579,7 @@ feature 'edit allegations' do
       victim_id: lisa.id,
       perpetrator_id: marge.id,
       screening_id: screening.id,
-      allegation_types: ['General neglect']
+      allegation_types: ['General neglect'],
     }
 
     screening_with_new_allegation = screening.dup.tap do |obj|

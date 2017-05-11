@@ -12,7 +12,7 @@ describe IntakeFaradayMiddleware::RaiseHttpException do
       env = {
         url: URI('/api/v1/participants'),
         body: 'this is the body',
-        method: :post
+        method: :post,
       }
 
       response_env = env.merge(status: 201, body: '!kaboom')
@@ -31,7 +31,7 @@ describe IntakeFaradayMiddleware::RaiseHttpException do
       env = {
         url: URI('/api/v1/participants'),
         body: 'this is the body',
-        method: :get
+        method: :get,
       }
 
       response_env = env.merge(status: 200, body: '!kaboom')
@@ -50,7 +50,7 @@ describe IntakeFaradayMiddleware::RaiseHttpException do
       env = {
         url: '/api/v1/participants',
         body: 'this is the body',
-        method: :delete
+        method: :delete,
       }
 
       response_env = env.merge(status: 204, body: '!kaboom')
@@ -69,7 +69,7 @@ describe IntakeFaradayMiddleware::RaiseHttpException do
       env = {
         url: URI('/api/v1/participants'),
         body: 'this is the body',
-        method: :delete
+        method: :delete,
       }
 
       response_env = env.merge(status: 500, body: 'kaboom')

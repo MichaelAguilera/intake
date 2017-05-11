@@ -27,7 +27,7 @@ module ErrorHandler
       api_response_body: exception.api_error[:response_body],
       url: exception.api_error[:url],
       method: exception.api_error[:method],
-      sent_attributes: exception.api_error[:sent_attributes]
+      sent_attributes: exception.api_error[:sent_attributes],
     }.as_json
   end
 
@@ -35,7 +35,7 @@ module ErrorHandler
     {
       error: :standard_error,
       status: 500,
-      message: exception.to_s
+      message: exception.to_s,
     }.as_json
   end
 

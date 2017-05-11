@@ -16,20 +16,20 @@ module Api
         :person_id,
         :screening_id,
         :ssn,
-        addresses: %i[
-          id
-          street_address
-          city
-          state
-          zip
-          type
+        addresses: [
+          :id,
+          :street_address,
+          :city,
+          :state,
+          :zip,
+          :type,
         ],
-        phone_numbers: %i[
-          id
-          number
-          type
+        phone_numbers: [
+          :id,
+          :number,
+          :type,
         ],
-        roles: []
+        roles: [],
       ].freeze
 
       def create

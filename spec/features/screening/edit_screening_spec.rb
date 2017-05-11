@@ -34,11 +34,11 @@ feature 'Edit Screening' do
       cross_reports: [
         {
           agency_type: 'District attorney',
-          agency_name: 'SCDA Office'
+          agency_name: 'SCDA Office',
         },
         {
-          agency_type: 'Law enforcement'
-        }
+          agency_type: 'Law enforcement',
+        },
       ]
     )
   end
@@ -224,8 +224,8 @@ feature 'individual card save' do
     existing_screening.cross_reports = [
       {
         agency_type: 'Department of justice',
-        agency_name: 'Sac Office'
-      }
+        agency_name: 'Sac Office',
+      },
     ]
 
     stub_request(:put, intake_api_screening_url(existing_screening.id))
@@ -257,8 +257,8 @@ feature 'individual card save' do
     existing_screening.cross_reports = [
       {
         agency_type: 'Department of justice',
-        agency_name: nil
-      }
+        agency_name: nil,
+      },
     ]
 
     stub_request(:put, intake_api_screening_url(existing_screening.id))

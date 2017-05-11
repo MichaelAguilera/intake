@@ -54,19 +54,19 @@ describe Api::V1::ScreeningsController do
         cross_reports: [
           {
             agency_type: 'Department of justice',
-            agency_name: 'SCD office'
+            agency_name: 'SCD office',
           },
           {
             agency_type: 'Licensing',
-            agency_name: 'SCD office'
-          }
+            agency_name: 'SCD office',
+          },
         ],
         address: {
           id: '2',
           city: 'LA',
           state: 'CA',
           street_address: '123 Fake St',
-          zip: '11222'
+          zip: '11222',
         },
         allegations: [{
           id: '2',
@@ -75,8 +75,8 @@ describe Api::V1::ScreeningsController do
           perpetrator: { first_name: 'name' },
           victim_id: '5',
           victim: { first_name: 'name' },
-          allegation_types: ['General neglect']
-        }]
+          allegation_types: ['General neglect'],
+        }],
       }.with_indifferent_access
     end
     let(:unallowed_params) { %i[perpetrator victim] }

@@ -9,7 +9,7 @@ describe Allegation do
         id: '1',
         screening_id: '2',
         victim_id: '3',
-        perpetrator_id: '4'
+        perpetrator_id: '4',
       }
       expect(
         described_class.new(attributes).as_json
