@@ -6,7 +6,7 @@ import moment from 'moment'
 import ShowField from 'components/common/ShowField'
 
 function parseDateTime(dateTime) {
-  return (dateTime === null ? '' : moment.utc(dateTime).format('MM/DD/YYYY hh:mm A'))
+  return (dateTime === null ? '' : moment(dateTime).format('MM/DD/YYYY hh:mm A'))
 }
 
 const ScreeningInformationShowView = ({screening, onEdit}) => (

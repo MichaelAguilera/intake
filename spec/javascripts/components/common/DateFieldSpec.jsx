@@ -12,7 +12,7 @@ describe('DateField', () => {
       id: 'myDateFieldId',
       label: 'this is my label',
       onChange: onChange,
-      value: 'this is my field value',
+      value: '2016-08-22T11:00:00.000Z',
     }
     component = shallow(
       <DateField {...props}/>
@@ -40,7 +40,7 @@ describe('DateField', () => {
     expect(inputElement.length).toEqual(1)
     expect(inputElement.props().type).toEqual('date')
     expect(inputElement.props().className).toEqual('input-type-date')
-    expect(inputElement.props().value).toEqual('this is my field value')
+    expect(inputElement.props().value).toEqual('2016-08-22')
   })
 
   it('calls onChange when a change event occurs on input field', () => {
