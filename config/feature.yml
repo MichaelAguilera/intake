@@ -4,8 +4,8 @@ development:
     release_one: false
     authentication: false
     centralized_sessions: true
-    people_search_tpt: false
-    referral_submit: false
+    people_search_tpt: true
+    referral_submit: true
 
 test:
   features:

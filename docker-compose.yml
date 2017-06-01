@@ -33,11 +33,12 @@ services:
     ports:
       - "3001:3000"
     environment:
-      ELASTICSEARCH_URL: 'http://elasticsearch:9200'
+      #ELASTICSEARCH_URL: 'http://elasticsearch:9200'
+      ELASTICSEARCH_URL: 'http://10.200.3.171:9200'
       AUTHENTICATION_URL: 'http://www.example.com/'
       AUTHENTICATION: 'false'
-      SEARCH_URL: 'http://api-a.cocina.trn01.cwds.io'
-      PEOPLE_SEARCH_PATH: '/api/v1/dora/people/_search'
+      SEARCH_URL: 'http://10.200.3.163:8080'
+      PEOPLE_SEARCH_PATH: '/dora/people/_search'
     tty: true
     stdin_open: true
   db:
