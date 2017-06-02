@@ -14,7 +14,7 @@ import selectOptions from 'utils/selectHelper'
 import nameFormatter from 'utils/nameFormatter'
 import {ROLE_TYPE_REPORTER, ROLE_TYPE} from 'RoleType'
 
-const ParticipantEditView = ({participant, onCancel, onChange, onDelete, onSave}) => {
+const ParticipantEditView = ({participant, onCancel, onChange, onDelete, onSave, validate, validation}) => {
   const roleOptions = (selectedRoles = Immutable.List()) => {
     const hasReporterRole = selectedRoles.some((role) =>
       ROLE_TYPE_REPORTER.includes(role)
@@ -147,6 +147,7 @@ const ParticipantEditView = ({participant, onCancel, onChange, onDelete, onSave}
             focusPlaceholder='___-__-____'
             value={participant.get('ssn') || ''}
             onChange={(event) => onChange(['ssn'], event.target.value || null)}
+            onBlur={(event) => validate()}
           />
         </div>
         <AddressesEditView
@@ -170,5 +171,6 @@ ParticipantEditView.propTypes = {
   onDelete: PropTypes.func,
   onSave: PropTypes.func,
   participant: PropTypes.object.isRequired,
+  validate: PropTypes.func,
 }
 export default ParticipantEditView

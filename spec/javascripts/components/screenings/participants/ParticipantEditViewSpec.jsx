@@ -9,11 +9,13 @@ describe('ParticipantEditView', () => {
   let onChange
   let onCancel
   let onSave
+  let validate
 
   beforeEach(() => {
     onChange = jasmine.createSpy('onChange')
     onCancel = jasmine.createSpy('onCancel')
     onSave = jasmine.createSpy('onSave')
+    validate = jasmine.createSpy('validate')
   })
 
   describe('rendering edit view', () => {
@@ -37,6 +39,7 @@ describe('ParticipantEditView', () => {
           onChange={onChange}
           onCancel={onCancel}
           onSave={onSave}
+          validate={validate}
         />
       )
     })
@@ -137,6 +140,11 @@ describe('ParticipantEditView', () => {
     it('fires the onChange call when a field changes', () => {
       component.find('#participant-199-ssn').simulate('change', {target: {value: '123-756-075'}})
       expect(onChange).toHaveBeenCalledWith(['ssn'], '123-756-075')
+    })
+
+    it('fires the validate call when a validated field loses focus', () => {
+      component.find('#ssn').simulate('blur')
+      expect(validate).toHaveBeenCalled()
     })
 
     it('renders the cancel link', () => {

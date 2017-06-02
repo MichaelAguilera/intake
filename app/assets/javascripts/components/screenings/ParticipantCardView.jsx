@@ -2,6 +2,7 @@ import ParticipantEditView from 'components/screenings/ParticipantEditView'
 import ParticipantShowView from 'components/screenings/ParticipantShowView'
 import PropTypes from 'prop-types'
 import React from 'react'
+import Validator from 'validatorjs'
 
 export default class ParticipantCardView extends React.Component {
   constructor() {
@@ -9,7 +10,18 @@ export default class ParticipantCardView extends React.Component {
     this.state = {
       mode: this.props.mode,
     }
-
+    this.validationRules = {
+      ssn: [
+        'regex:/^\\d{3}-\\d{2}-\\d{4}$/'
+      ],
+    }
+    this.validationMessages = {
+      'regex.ssn':'The social security number is fewer than 9 characters',
+    }
+    this.validate = () => {
+      this.validation = new Validator(this.props.participant.toJS(), this.validationRules, this.validationMessages)
+      return this.validation.passes()
+    }
     this.onEdit = this.onEdit.bind(this)
     this.onCancel = this.onCancel.bind(this)
     this.onChange = this.onChange.bind(this)
@@ -42,6 +54,8 @@ export default class ParticipantCardView extends React.Component {
     const sharedProps = {
       onDelete: this.props.onDelete,
       participant: this.props.participant,
+      validate: this.validate,
+      validation: this.validation,
     }
 
     const allProps = {

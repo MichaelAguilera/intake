@@ -2,7 +2,7 @@ import React from 'react'
 import {shallow} from 'enzyme'
 import InputField from 'components/common/InputField'
 
-describe('InputField', () => {
+fdescribe('InputField', () => {
   let component
   const onChange = jasmine.createSpy('onChange')
   const props = {

@@ -4,12 +4,13 @@ import React from 'react'
 import {mount} from 'enzyme'
 
 describe('ParticipantCardView', () => {
+  let component
+  const validate = jasmine.createSpy('validate')
   describe('when mode is set to show', () => {
-    let component
 
     beforeEach(() => {
       const participant = Immutable.fromJS({id: '5', first_name: 'Tony', last_name: 'Hawk', roles: []})
-      component = mount(<ParticipantCardView participant={participant} mode='show'/>)
+      component = mount(<ParticipantCardView participant={participant} validate={validate} mode='show'/>)
     })
 
     it('renders the participants show view for each participant', () => {
@@ -34,12 +35,17 @@ describe('ParticipantCardView', () => {
   })
 
   describe('when mode is set to edit', () => {
-    let component
     const onCancel = jasmine.createSpy('onCancel')
-    const onChange = jasmine.createSpy('onCancel')
-    const onSave = jasmine.createSpy('onCancel')
+    const onChange = jasmine.createSpy('onChange')
+    const onSave = jasmine.createSpy('onSave')
     const participantId = '5'
-    const participant = Immutable.fromJS({id: participantId, first_name: 'Tony', last_name: 'Hawk', ssn: 'ssn-1', roles: []})
+    const participant = Immutable.fromJS({
+      id: participantId,
+      first_name: 'Tony',
+      last_name: 'Hawk',
+      ssn: '12_-_7-__8_',
+      roles: []
+    })
 
     beforeEach(() => {
       component = mount(
@@ -49,6 +55,7 @@ describe('ParticipantCardView', () => {
           onCancel={onCancel}
           onChange={onChange}
           onSave={onSave}
+          validate={validate}
         />
       )
     })

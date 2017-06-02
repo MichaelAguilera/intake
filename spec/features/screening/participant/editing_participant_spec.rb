@@ -153,6 +153,7 @@ feature 'Edit Screening' do
   end
 
   context 'editing social security number (ssn)' do
+    let(:social_is_too_short_message) { 'This social security number is fewer than 9 characters.' }
     scenario 'numbers are formatted correctly' do
       visit edit_screening_path(id: screening.id)
       within edit_participant_card_selector(homer.id) do
@@ -192,6 +193,19 @@ feature 'Edit Screening' do
         within '.card-body' do
           fill_in 'Social security number', with: '12k34?!#adf567890'
           expect(page).to have_field('Social security number', with: '123-45-6789')
+        end
+      end
+    end
+
+    scenario 'showing validation message when input is too short' do
+      visit edit_screening_path(id: screening.id)
+      within edit_participant_card_selector(homer.id) do
+        within '.card-body' do
+          fill_in 'Social security number', with: '12345'
+          expect(page).to have_field('Social security number', with: '123-45-____')
+          page.find('input#ssn').native.send_keys :tab
+          expect(page.find('#ssn')).to have_selector('.input-inline-error')
+          expect(page).to have_selector('.input-error-message', with: social_is_too_short_message)
         end
       end
     end
