@@ -125,4 +125,50 @@ describe('InputField', () => {
       expect(event.target.placeholder).toEqual('I like attention :) ')
     })
   })
+
+  describe('when no errorMessages passed in', () => {
+    beforeEach(() => {
+      component = shallow(<InputField {...props}/>)
+    })
+
+    it('does not display an error class', () => {
+      expect(component.find('.input-error').length).toEqual(0)
+    })
+
+    it('does not display an error styled label', () => {
+      expect(component.find('.input-error-label').length).toEqual(0)
+    })
+
+    it('does not display an error message', () => {
+      expect(component.find('.input-error-message').length).toEqual(0)
+    })
+  })
+
+  describe('when an errorMessages passed in', () => {
+    const propsWithErrorMessages = {
+      gridClassName: 'myWrapperTest',
+      labelClassName: 'myLabelTest',
+      id: 'myInputFieldId',
+      label: 'this is my label',
+      onChange: onChange,
+      errorMessages: ["You've failed this city!","Something is terribly wrong"],
+    }
+    beforeEach(() => {
+      component = shallow(<InputField {...propsWithErrorMessages}/>)
+    })
+
+    it('displays an error class', () => {
+      expect(component.find('.input-error').length).toEqual(1)
+    })
+
+    it('displays an error styled label', () => {
+      expect(component.find('.input-error-label').length).toEqual(1)
+    })
+
+    it('displays an error message', () => {
+      expect(component.find('.input-error-message').length).toEqual(2)
+      expect(component.find('.input-error-message').first().text()).toEqual(propsWithErrorMessages.errorMessages[0])
+      expect(component.find('.input-error-message').last().text()).toEqual(propsWithErrorMessages.errorMessages[1])
+    })
+  })
 })
