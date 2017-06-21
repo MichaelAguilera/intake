@@ -62,6 +62,55 @@ feature 'Screening Information Validations' do
         expect(page).to_not have_content('Please enter an assigned worker.')
       end
     end
+
+    scenario 'user sees that the start date is required' do
+      error_message = 'Please enter a screening start date.'
+
+      within '#screening-information-card.edit' do
+        expect(page).not_to have_content(error_message)
+        page.find('#started_at').native.click
+        expect(page).not_to have_content(error_message)
+        page.find('#name').native.click
+        expect(page).to have_content(error_message)
+        fill_in_datepicker 'Screening End Date/Time', with: '08/17/2016 3:00 AM'
+        page.find('#name').native.click
+        expect(page).not_to have_content(error_message)
+      end
+    end
+
+    scenario 'user saves information card without start date and then adds one' do
+      error_message = 'Please enter a screening start date.'
+
+      stub_request(:put, host_url(ExternalRoutes.intake_api_screening_path(screening.id)))
+        .with(json_body(as_json_without_root_id(screening)))
+        .and_return(json_body(screening.to_json))
+
+      within '#screening-information-card.edit' do
+        expect(page).not_to have_content(error_message)
+        click_button 'Save'
+      end
+
+      within '#screening-information-card.show' do
+        expect(page).to have_content(error_message)
+        click_link 'Edit'
+      end
+
+      screening.assign_attributes(started_at: '2016-08-17T10:00:00.000Z')
+      stub_request(:put, host_url(ExternalRoutes.intake_api_screening_path(screening.id)))
+        .with(json_body(as_json_without_root_id(screening)))
+        .and_return(json_body(screening.to_json))
+
+      within '#screening-information-card.edit' do
+        expect(page).to have_content(error_message)
+        fill_in_datepicker 'Screening End Date/Time', with: '08/17/2016 3:00 AM'
+        page.find('#name').click
+        click_button 'Save'
+      end
+
+      within '#screening-information-card.show' do
+        expect(page).to_not have_content(error_message)
+      end
+    end
   end
 
   context 'On the show page' do
