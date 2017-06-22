@@ -33,13 +33,15 @@ feature 'Screening Information Validations' do
 
     scenario 'user sees an error message if communication method field left unfilled' do
       within '#screening-information-card.edit' do
+        page.find('#name').native.click # Make sure #communication_method isn't the focused element
         expect(page).not_to have_content('Please select a communication method.')
-        page.find('#communication_method').native.click
+        simulate('focus', on: '#communication_method')
         expect(page).not_to have_content('Please select a communication method.')
-        page.find('#name').native.click
+        simulate('blur', on: '#communication_method')
         expect(page).to have_content('Please select a communication method.')
+        simulate('focus', on: '#communication_method')
         select 'Email', from: 'Communication Method'
-        page.find('#name').native.click
+        simulate('blur', on: '#communication_method')
         expect(page).not_to have_content('Please select a communication method.')
       end
     end
