@@ -1,7 +1,7 @@
 import React from 'react'
 import Immutable from 'immutable'
 import ScreeningInformationCardView from 'components/screenings/ScreeningInformationCardView'
-import {mount} from 'enzyme'
+import {shallow, mount} from 'enzyme'
 import * as Validator from 'utils/validator'
 
 describe('ScreeningInformationCardView', () => {
@@ -27,19 +27,28 @@ describe('ScreeningInformationCardView', () => {
         screening: Immutable.fromJS({
           name: 'Johnson',
           assignee: '',
-          started_at: '2016-08-13T10:00:00.000Z',
+          started_at: '',
           ended_at: '2016-08-22T11:00:00.000Z',
           communication_method: 'mail',
         }),
       }
-      component = mount(<ScreeningInformationCardView {...props} mode='edit' />)
+      component = shallow(<ScreeningInformationCardView {...props} mode='edit' />)
     })
 
-    it('adds errors after focus is lost', () => {
-      const assigneeInput = component.find('#assignee')
-      assigneeInput.simulate('focus')
-      assigneeInput.simulate('blur')
-      expect(component.update().text()) .toContain('Please enter an assigned worker.')
+    it('adds errors for assigned social worker', () => {
+      component.instance().onBlur('assignee', '')
+      const errorProps = component.update().find('ScreeningInformationEditView').props().errors
+      const expectedErrors = {assignee: ['Please enter an assigned worker.']}
+      expect(Immutable.is(errorProps, Immutable.fromJS(expectedErrors))).toEqual(true)
+      expect(errorProps.toJS()).toEqual(expectedErrors)
+    })
+
+    it('adds errors start date/time', () => {
+      component.instance().onBlur('started_at', null)
+      const errorProps = component.update().find('ScreeningInformationEditView').props().errors
+      const expectedErrors = {started_at: ['Please enter a screening start date.']}
+      expect(Immutable.is(errorProps, Immutable.fromJS(expectedErrors))).toEqual(true)
+      expect(errorProps.toJS()).toEqual(expectedErrors)
     })
   })
 
@@ -171,7 +180,7 @@ describe('ScreeningInformationCardView', () => {
           screening: Immutable.fromJS({
             name: 'Johnson',
             assignee: '',
-            started_at: '2016-08-13T10:00:00.000Z',
+            started_at: '',
             ended_at: '2016-08-22T11:00:00.000Z',
             communication_method: 'mail',
           }),
@@ -179,14 +188,14 @@ describe('ScreeningInformationCardView', () => {
         component = mount(<ScreeningInformationCardView {...props} mode='show' />)
       })
 
-      it('validates the assigned social worker field', () => {
+      it('validates the assigned social worker and start date/time', () => {
         const errors = component.find('ScreeningInformationShowView').props().errors
         expect(errors.toJS()).toEqual({
           assignee: ['Please enter an assigned worker.'],
           communication_method: [],
           ended_at: [],
           name: [],
-          started_at: [],
+          started_at: ['Please enter a screening start date.'],
         })
       })
     })
