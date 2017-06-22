@@ -5,7 +5,7 @@ module EventsHelpers
     execute_script("$('#{on}').trigger('#{event}')")
   end
 
-  def get_focused_element
+  def focused_element
     evaluate_script('document.activeElement')
   end
 end
