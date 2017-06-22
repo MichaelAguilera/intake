@@ -3,6 +3,7 @@ import Immutable from 'immutable'
 import React from 'react'
 import {ScreeningPage} from 'components/screenings/ScreeningPage'
 import {mount, shallow} from 'enzyme'
+import ScreeningSubmitButton from 'components/screenings/ScreeningSubmitButton'
 
 export const requiredScreeningAttributes = {
   allegations: [],
@@ -22,9 +23,29 @@ export const requiredProps = {
 }
 
 describe('ScreeningPage', () => {
+  let featureFlagSpy
   beforeEach(() => {
-    spyOn(IntakeConfig, 'isFeatureInactive').and.returnValue(true)
+    featureFlagSpy = spyOn(IntakeConfig, 'isFeatureInactive').and.returnValue(true)
     spyOn(IntakeConfig, 'isFeatureActive').and.returnValue(false)
+  })
+
+  describe('R2', () => {
+    describe('is active', () => {
+      it('does not display a submit button', () => {
+        featureFlagSpy.and.returnValue(false)
+        const component = shallow(<ScreeningPage {...requiredProps} />)
+        component.setState({loaded: true})
+        expect(component.find(ScreeningSubmitButton).length).toEqual(0)
+      })
+    })
+    describe('is inactive', () => {
+      it('displays a submit button', () => {
+        featureFlagSpy.and.returnValue(true)
+        const component = shallow(<ScreeningPage {...requiredProps} />)
+        component.setState({loaded: true})
+        expect(component.find(ScreeningSubmitButton).length).toEqual(1)
+      })
+    })
   })
 
   describe('render', () => {
