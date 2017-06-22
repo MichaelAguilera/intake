@@ -78,18 +78,30 @@ describe('ScreeningInformationEditView', () => {
   })
 
   describe('onBlur', () => {
-    const blurSpy = jasmine.createSpy('onBlur')
-    const props = {
-      ...requiredProps,
-      onBlur: blurSpy,
-    }
+    let blurSpy
 
-    it('calls onBlur with the field name and value', () => {
-      component = mount(<ScreeningInformationEditView {...props} />)
-      const assigneeField = component.find('#assignee')
-      assigneeField.simulate('focus')
-      assigneeField.simulate('blur')
-      expect(blurSpy).toHaveBeenCalledWith('assignee', 'Michael Bluth')
+    beforeEach(() => {
+      blurSpy = jasmine.createSpy('onBlur')
+      const props = {
+        ...requiredProps,
+        onBlur: blurSpy,
+      }
+
+      component = shallow(<ScreeningInformationEditView {...props} />)
+    })
+
+    it('calls onBlur for the social worker with the field name and value', () => {
+      const socialWorker = requiredProps.screening.get('assignee')
+      const assigneeField = component.find('InputField[label="Assigned Social Worker"]')
+      assigneeField.props().onBlur({target: {value: socialWorker}})
+      expect(blurSpy).toHaveBeenCalledWith('assignee', socialWorker)
+    })
+
+    it('calls onBlur for the start date with the field name and value', () => {
+      const dateValue = requiredProps.screening.get('started_at')
+      const startDate = component.find('DateField[label="Screening Start Date/Time"]')
+      startDate.props().onBlur(dateValue)
+      expect(blurSpy).toHaveBeenCalledWith('started_at', dateValue)
     })
   })
 
@@ -99,7 +111,7 @@ describe('ScreeningInformationEditView', () => {
       errors: Immutable.fromJS({
         assignee: ['First error', 'Second error'],
         started_at: ['My error', 'My other error'],
-        name: []
+        name: [],
       }),
     }
 
