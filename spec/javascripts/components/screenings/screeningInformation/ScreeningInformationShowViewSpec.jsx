@@ -29,20 +29,23 @@ describe('ScreeningInformationShowView', () => {
   })
 
   describe('when the screening values are null', () => {
-    const screening = Immutable.fromJS({
-      assignee: null,
-      name: null,
-      started_at: null,
-      ended_at: null,
-      communication_method: null,
-    })
-
-    const props = {
-      ...requiredProps,
-      screening,
-    }
-
     beforeEach(() => {
+      const screening = Immutable.fromJS({
+        assignee: null,
+        name: null,
+        started_at: null,
+        ended_at: null,
+        communication_method: null,
+      })
+      const props = {
+        ...requiredProps,
+        screening,
+        errors: Immutable.fromJS({
+          assignee: ['Error 1', 'Error 2'],
+          started_at: ['Error 3', 'Error 4'],
+        }),
+      }
+
       component = shallow(<ScreeningInformationShowView {...props} />)
     })
 
@@ -70,12 +73,23 @@ describe('ScreeningInformationShowView', () => {
       expect(component.find('ShowField[label="Communication Method"]').html())
       .toContain('<div class="c-gray"></div>')
     })
+
+    it('renders errors for the Assigned Social Worker', () => {
+      const socialWorker = component.find('ShowField[label="Assigned Social Worker"]')
+      expect(socialWorker.html()).toContain('Error 1')
+      expect(socialWorker.html()).toContain('Error 2')
+    })
+
+    it('renders errors for the Start Date/Time', () => {
+      const startDate = component.find('ShowField[label="Screening Start Date/Time"]')
+      expect(startDate.html()).toContain('Error 3')
+      expect(startDate.html()).toContain('Error 4')
+    })
   })
 
   describe('Show fields', () => {
     const props = {
       ...requiredProps,
-      errors: Immutable.fromJS({assignee: ['Error 1', 'Error 2']}),
       screening: Immutable.fromJS({
         name: 'The Rocky Horror Picture Show',
         assignee: 'Michael Bluth',
@@ -120,12 +134,6 @@ describe('ScreeningInformationShowView', () => {
       const socialWorker = component.find('ShowField[label="Assigned Social Worker"]')
       expect(socialWorker.props().required).toEqual(true)
       expect(socialWorker.html()).toContain('Michael Bluth')
-    })
-
-    it('renders errors for the Assigned Social Worker', () => {
-      const socialWorker = component.find('ShowField[label="Assigned Social Worker"]')
-      expect(socialWorker.html()).toContain('Error 1')
-      expect(socialWorker.html()).toContain('Error 2')
     })
   })
 })
