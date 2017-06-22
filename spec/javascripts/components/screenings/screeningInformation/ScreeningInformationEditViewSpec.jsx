@@ -96,12 +96,21 @@ describe('ScreeningInformationEditView', () => {
   describe('errors', () => {
     const props = {
       ...requiredProps,
-      errors: Immutable.fromJS({assignee: ['First error', 'Second error'], name: []}),
+      errors: Immutable.fromJS({
+        assignee: ['First error', 'Second error'],
+        started_at: ['My error', 'My other error'],
+        name: []
+      }),
     }
 
     it('passes the appropriate errors to the assignee input', () => {
       component = shallow(<ScreeningInformationEditView {...props} />)
       expect(component.find('InputField[id="assignee"]').props().errors.toJS()).toEqual(['First error', 'Second error'])
+    })
+
+    it('passes the appropriate errors to the start_date', () => {
+      component = shallow(<ScreeningInformationEditView {...props} />)
+      expect(component.find('DateField[label="Screening Start Date/Time"]').props().errors.toJS()).toEqual(['My error', 'My other error'])
     })
   })
 })
